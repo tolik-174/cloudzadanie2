@@ -3,6 +3,6 @@ uvicorn[standard]
 sqlalchemy
 psycopg2-binary
 python-dotenv
-python-multipart
 pydantic
+python-multipart
 httpx
