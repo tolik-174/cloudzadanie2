@@ -1,17 +1,25 @@
-def generate_summary(transcript: str) -> str:
-    text = transcript.strip()
-    if len(text) <= 250:
-        return text
-    return text[:250] + "..."
+from groq import Groq
+import os
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+def generate_summary(transcript: str):
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[
+            {"role":"system","content":"Summarize this meeting briefly."},
+            {"role":"user","content":transcript}
+        ]
+    )
+    return response.choices[0].message.content
 
 
-def extract_action_items(transcript: str) -> str:
-    parts = [part.strip() for part in transcript.split(".") if part.strip()]
-    if not parts:
-        return "- No action items detected"
-
-    items = []
-    for part in parts[:3]:
-        items.append(f"- {part}")
-
-    return "\n".join(items)
+def extract_action_items(transcript: str):
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[
+            {"role":"system","content":"Extract action items as bullet points."},
+            {"role":"user","content":transcript}
+        ]
+    )
+    return response.choices[0].message.content
