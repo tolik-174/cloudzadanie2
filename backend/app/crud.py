@@ -23,3 +23,6 @@ def get_all_meetings(db: Session):
 
 def get_meeting_by_id(db: Session, meeting_id: int):
     return db.query(Meeting).filter(Meeting.id == meeting_id).first()
+
+
+
