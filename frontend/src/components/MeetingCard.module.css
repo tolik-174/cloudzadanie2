@@ -83,3 +83,20 @@
 .card:hover .cta {
   gap: 10px;
 }
+.deleteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+.deleteBtn:hover {
+  color: var(--error);
+  background: rgba(248, 113, 113, 0.08);
+}

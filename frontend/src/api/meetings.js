@@ -21,3 +21,6 @@ export const getMeetingById = async (id) => {
   const { data } = await api.get(`/meetings/${id}`)
   return data
 }
+export const deleteMeeting = async (id) => {
+  await api.delete(`/meetings/${id}`)
+}

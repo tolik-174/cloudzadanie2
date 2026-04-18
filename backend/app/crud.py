@@ -23,6 +23,13 @@ def get_all_meetings(db: Session):
 
 def get_meeting_by_id(db: Session, meeting_id: int):
     return db.query(Meeting).filter(Meeting.id == meeting_id).first()
+def delete_meeting(db: Session, meeting_id: int):
+    meeting = db.query(Meeting).filter(Meeting.id == meeting_id).first()
+    if not meeting:
+        return None
 
+    db.delete(meeting)
+    db.commit()
+    return meeting
 
 

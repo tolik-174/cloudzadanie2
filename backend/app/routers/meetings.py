@@ -5,6 +5,7 @@ from app.database import get_db
 from app.schemas import MeetingCreate, MeetingResponse
 from app.crud import create_meeting, get_all_meetings, get_meeting_by_id
 from app.services.summarizer import generate_summary, extract_action_items
+from app.crud import create_meeting, get_all_meetings, get_meeting_by_id, delete_meeting
 
 router = APIRouter(prefix="/meetings", tags=["Meetings"])
 
@@ -29,3 +30,11 @@ def read_meeting(meeting_id: int, db: Session = Depends(get_db)):
     if not meeting:
         raise HTTPException(status_code=404, detail="Meeting not found")
     return meeting
+@router.delete("/{meeting_id}")
+def remove_meeting(meeting_id: int, db: Session = Depends(get_db)):
+    deleted_meeting = delete_meeting(db, meeting_id)
+
+    if not deleted_meeting:
+        raise HTTPException(status_code=404, detail="Meeting not found")
+
+    return {"message": "Meeting deleted successfully"}

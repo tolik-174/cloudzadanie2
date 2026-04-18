@@ -16,7 +16,7 @@ export default function History() {
       .catch(() => setError('Could not load meetings. Is the backend running?'))
       .finally(() => setLoading(false))
   }, [])
-
+  const handleDelete = (id) => setMeetings(prev => prev.filter(m => m.id !== id))
   const filtered = meetings.filter(m =>
     m.title.toLowerCase().includes(search.toLowerCase()) ||
     (m.summary || '').toLowerCase().includes(search.toLowerCase())
@@ -83,7 +83,7 @@ export default function History() {
         {!loading && !error && filtered.length > 0 && (
           <div className={styles.grid}>
             {filtered.map((m, i) => (
-              <MeetingCard key={m.id} meeting={m} index={i} />
+              <MeetingCard key={m.id} meeting={m} index={i} onDelete={handleDelete} />
             ))}
           </div>
         )}
