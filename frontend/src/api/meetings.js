@@ -12,6 +12,17 @@ export const submitMeeting = async ({ title, transcript }) => {
   return data
 }
 
+export const transcribeMeetingAudio = async (file) => {
+  const formData = new FormData()
+  formData.append('file', file)
+
+  const { data } = await api.post('/meetings/transcribe', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+
+  return data
+}
+
 export const getAllMeetings = async () => {
   const { data } = await api.get('/meetings')
   return data

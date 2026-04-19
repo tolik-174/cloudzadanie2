@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, File, UploadFile
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -7,7 +7,14 @@ from app.crud import create_meeting, get_all_meetings, get_meeting_by_id
 from app.services.summarizer import generate_summary, extract_action_items
 from app.crud import create_meeting, get_all_meetings, get_meeting_by_id, delete_meeting
 
+from app.services.transcription import transcribe_audio_file
+
 router = APIRouter(prefix="/meetings", tags=["Meetings"])
+
+@router.post("/transcribe")
+async def transcribe_meeting_audio(file: UploadFile = File(...)):
+    transcript = await transcribe_audio_file(file)
+    return {"text": transcript}
 
 
 @router.post("/text", response_model=MeetingResponse)
