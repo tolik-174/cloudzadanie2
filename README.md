@@ -94,7 +94,7 @@ pip install -r requirements.txt
 
 ### 4. Create .env file backend
 
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/meeting_db  
+DATABASE_URL=postgresql://neondb_owner:npg_bPW8OpQft2Mo@ep-dark-band-al6qnjue-pooler.c-3.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
 OPENAI_API_KEY=api_key  
 SPEECH_API_KEY=api_key 
 
