@@ -92,11 +92,15 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
-### 4. Create .env file
+### 4. Create .env file backend
 
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/meeting_db  
 OPENAI_API_KEY=api_key  
-SPEECH_API_KEY=api_key  
+SPEECH_API_KEY=api_key 
+
+### 4.1 Create .env file frontend
+
+VITE_API_URL=https://cloudzadanie2.onrender.com  
 
 ### 5. Run server
 
