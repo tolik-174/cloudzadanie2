@@ -6,7 +6,7 @@ Smart Meeting Summarizer is a full-stack, cloud-ready web application built for 
 
 The project was developed for the **Cloud Technologies** university course and demonstrates real-world application of cloud-native backend architecture, RESTful API design, AI speech-to-text integration, LLM-based summarization, and modern frontend development.
 
-> **🌐 Live version:** The fully deployed application is accessible at **[https://cloudzadanie2.vercel.app](https://cloudzadanie2.vercel.app)**. The frontend is hosted on Vercel, the backend on Render, and the database on Neon.tech. The setup instructions in this README describe how to run the project **locally** for development purposes.
+> **🌐 Live version:** The fully deployed application is accessible at **[https://cloudzadanie2copy.vercel.app](https://cloudzadanie2copy.vercel.app)**. The frontend is hosted on Vercel, the backend on Render, and the database on Neon.tech. The setup instructions in this README describe how to run the project **locally** for development purposes.
 
 ---
 
