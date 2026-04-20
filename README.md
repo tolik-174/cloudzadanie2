@@ -178,7 +178,7 @@ Both paths can be combined: upload audio → transcribe → review/edit transcri
 
 ## 🚀 Setup Instructions (Local Development)
 
-> The instructions below are for running the project on your own machine. If you just want to use the app, visit **[https://cloudzadanie2.vercel.app](https://cloudzadanie2copy.vercel.app)** — no setup required.
+> The instructions below are for running the project on your own machine. If you just want to use the app, visit **[https://cloudzadanie2copy.vercel.app](https://cloudzadanie2copy.vercel.app)** — no setup required.
 
 ### Prerequisites
 
