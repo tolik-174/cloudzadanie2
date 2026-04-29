@@ -213,7 +213,7 @@ flowchart TD
 
     U --> P
 ```
-
+This diagram shows the main user interface flow. The user starts on the Home page, where they can either paste a transcript or upload an audio file. Audio is transcribed first and then inserted into the transcript field. After submitting, the backend generates a summary and action items, which are displayed in the result view. Users can also open the History page, search saved meetings, view details, or delete records.
 ---
 ## 🚀 Setup Instructions (Local Development)
 
