@@ -177,43 +177,58 @@ Both paths can be combined: upload audio → transcribe → review/edit transcri
 ---
 ---
 
-##  UI Flow Diagram
+---
+
+## ☁️ UI + Cloud Deployment Diagram
 
 ```mermaid
 flowchart TD
-    A[Home Page] --> B[Enter Meeting Title]
-    B --> C{Input Type}
 
-    C -->|Paste transcript| D[Transcript Textarea]
-    C -->|Upload audio file| E[Audio Upload Section]
+    subgraph USER["👤 End User"]
+        U[Browser]
+    end
 
-    E --> F[Validate Audio File]
-    F --> G[Send Audio to Backend]
-    G --> H[Deepgram Transcription]
-    H --> D
+    subgraph VERCEL["▲ Vercel Cloud"]
+        FE[React Frontend<br/>Home / History / Details]
+    end
 
-    D --> I[Generate Summary Button]
-    I --> J[Backend Processing]
-    J --> K[Groq AI Summary + Action Items]
-    K --> L[Meeting Result Component]
+    subgraph RENDER["🟣 Render Cloud"]
+        BE[FastAPI Backend<br/>REST API]
+    end
 
-    L --> M[View Summary]
-    L --> N[View Action Items]
-    L --> O[View Original Transcript]
+    subgraph NEON["🐘 Neon.tech"]
+        DB[(PostgreSQL Database)]
+    end
 
-    A --> P[History Page]
-    P --> Q[Search Meetings]
-    P --> R[Meeting Cards]
+    subgraph GROQ["⚡ Groq Cloud API"]
+        AI[LLaMA 3.1 8B Instant<br/>Summary + Action Items]
+    end
 
-    R --> S[Open Meeting Details]
-    S --> T[Meeting Details Page]
+    subgraph DEEPGRAM["🎙️ Deepgram Cloud API"]
+        STT[Nova-3 Speech-to-Text]
+    end
 
-    R --> U[Delete Meeting]
-    T --> U
+    U --> FE
 
-    U --> P
+    FE -->|POST /meetings/text| BE
+    FE -->|POST /meetings/transcribe| BE
+    FE -->|GET /meetings| BE
+    FE -->|DELETE /meetings/id| BE
+
+    BE --> DB
+    DB --> BE
+
+    BE -->|Transcript text| AI
+    AI -->|Summary + Tasks| BE
+
+    BE -->|Audio file| STT
+    STT -->|Transcript| BE
+
+    BE --> FE
+    FE --> U
 ```
-This diagram shows the main user interface flow. The user starts on the Home page, where they can either paste a transcript or upload an audio file. Audio is transcribed first and then inserted into the transcript field. After submitting, the backend generates a summary and action items, which are displayed in the result view. Users can also open the History page, search saved meetings, view details, or delete records.
+
+---
 ---
 ## 🚀 Setup Instructions (Local Development)
 
