@@ -175,7 +175,6 @@ User enters title + transcript (typed or auto-filled from audio)
 Both paths can be combined: upload audio → transcribe → review/edit transcript → generate summary.
 
 ---
----
 
 ##  UI Flow Diagram
 
