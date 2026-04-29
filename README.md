@@ -177,34 +177,73 @@ Both paths can be combined: upload audio → transcribe → review/edit transcri
 ---
 ---
 
+##  UI Flow Diagram
+
+```mermaid
+flowchart TD
+    A[Home Page] --> B[Enter Meeting Title]
+    B --> C{Input Type}
+
+    C -->|Paste transcript| D[Transcript Textarea]
+    C -->|Upload audio file| E[Audio Upload Section]
+
+    E --> F[Validate Audio File]
+    F --> G[Send Audio to Backend]
+    G --> H[Deepgram Transcription]
+    H --> D
+
+    D --> I[Generate Summary Button]
+    I --> J[Backend Processing]
+    J --> K[Groq AI Summary + Action Items]
+    K --> L[Meeting Result Component]
+
+    L --> M[View Summary]
+    L --> N[View Action Items]
+    L --> O[View Original Transcript]
+
+    A --> P[History Page]
+    P --> Q[Search Meetings]
+    P --> R[Meeting Cards]
+
+    R --> S[Open Meeting Details]
+    S --> T[Meeting Details Page]
+
+    R --> U[Delete Meeting]
+    T --> U
+
+    U --> P
+```
+
+---
 ---
 
-## ☁️ UI + Cloud Deployment Diagram
+
+## ☁️ Cloud Deployment Diagram
 
 ```mermaid
 flowchart TD
 
-    subgraph USER["👤 End User"]
+    subgraph USER["End User"]
         U[Browser]
     end
 
-    subgraph VERCEL["▲ Vercel Cloud"]
+    subgraph VERCEL["Vercel Cloud"]
         FE[React Frontend<br/>Home / History / Details]
     end
 
-    subgraph RENDER["🟣 Render Cloud"]
+    subgraph RENDER["Render Cloud"]
         BE[FastAPI Backend<br/>REST API]
     end
 
-    subgraph NEON["🐘 Neon.tech"]
+    subgraph NEON["Neon.tech"]
         DB[(PostgreSQL Database)]
     end
 
-    subgraph GROQ["⚡ Groq Cloud API"]
+    subgraph GROQ["Groq Cloud API"]
         AI[LLaMA 3.1 8B Instant<br/>Summary + Action Items]
     end
 
-    subgraph DEEPGRAM["🎙️ Deepgram Cloud API"]
+    subgraph DEEPGRAM["Deepgram Cloud API"]
         STT[Nova-3 Speech-to-Text]
     end
 
