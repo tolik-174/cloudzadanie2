@@ -175,7 +175,46 @@ User enters title + transcript (typed or auto-filled from audio)
 Both paths can be combined: upload audio → transcribe → review/edit transcript → generate summary.
 
 ---
+---
 
+##  UI Flow Diagram
+
+```mermaid
+flowchart TD
+    A[Home Page] --> B[Enter Meeting Title]
+    B --> C{Input Type}
+
+    C -->|Paste transcript| D[Transcript Textarea]
+    C -->|Upload audio file| E[Audio Upload Section]
+
+    E --> F[Validate Audio File]
+    F --> G[Send Audio to Backend]
+    G --> H[Deepgram Transcription]
+    H --> D
+
+    D --> I[Generate Summary Button]
+    I --> J[Backend Processing]
+    J --> K[Groq AI Summary + Action Items]
+    K --> L[Meeting Result Component]
+
+    L --> M[View Summary]
+    L --> N[View Action Items]
+    L --> O[View Original Transcript]
+
+    A --> P[History Page]
+    P --> Q[Search Meetings]
+    P --> R[Meeting Cards]
+
+    R --> S[Open Meeting Details]
+    S --> T[Meeting Details Page]
+
+    R --> U[Delete Meeting]
+    T --> U
+
+    U --> P
+```
+
+---
 ## 🚀 Setup Instructions (Local Development)
 
 > The instructions below are for running the project on your own machine. If you just want to use the app, visit **[https://cloudzadanie2copy.vercel.app](https://cloudzadanie2copy.vercel.app)** — no setup required.
